@@ -218,9 +218,10 @@
     const hotSearchesContainer = widget.querySelector('#hot-searches-container');
     const hotSearchesList = widget.querySelector('#hot-searches-list');
 
+    // 更新API地址为查询参数格式
     const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
-    const IP_STATS_API = `${API_BASE_URL}/admin/ip-stats`;
-    const SEARCH_HISTORY_API = `${API_BASE_URL}/admin/search-history?limit=500`;
+    const IP_STATS_API = `${API_BASE_URL}?action=ip-stats`;
+    const SEARCH_HISTORY_API = `${API_BASE_URL}?action=search-history&limit=500`;
 
     function updateScrollingNumber(container, newNumber) {
         if (!container) return;
@@ -321,7 +322,7 @@
             updateScrollingNumber(totalRequestsEl, ipData.reduce((sum, item) => sum + item.count, 0));
             
             if (ipData.length > 0) {
-                const lastRequestTimestamp = Math.max(...ipData.map(item => item.last_request));
+                const lastRequestTimestamp = Math.max(...ipData.map(item => new Date(item.last_request).getTime()));
                 const beijingTime = new Date(lastRequestTimestamp).toLocaleString('zh-CN', {
                     timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
                     hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
@@ -361,6 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingIndicator = document.getElementById('loadingIndicator');
 
     let contentHistory = [];
+
+    // 基础URL
+    const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
 
     function showLoadingIndicator() {
         loadingOverlay.style.display = 'block';
@@ -417,25 +421,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 搜索表单处理
     searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const keyword = keywordInput.value;
         if (!keyword) return;
-        const searchUrl = `https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor/search-and-modify?keyword=${encodeURIComponent(keyword)}`;
+        const searchUrl = `${API_BASE_URL}?keyword=${encodeURIComponent(keyword)}`;
         loadContent(searchUrl, true);
     });
 
+    // 处理搜索结果中的链接点击
     resultPopup.addEventListener('click', function(event) {
         const link = event.target.closest('a');
         if (!link) return;
         
         const href = link.getAttribute('href');
-        const isInternalApiLink = href.includes('/search-and-modify') || href.includes('/parse-content');
         
-        if (isInternalApiLink) {
+        // 检查是否是相对链接（由我们的 Edge Function 生成的）
+        if (href && href.startsWith('?')) {
             event.preventDefault();
-            loadContent(href);
-        } else if (href && href.trim() !== '' && !href.startsWith('javascript:')) {
+            // 将相对链接转换为完整的API调用
+            const fullUrl = `${API_BASE_URL}${href}`;
+            loadContent(fullUrl);
+        } 
+        // 检查是否有 data-proxy-url 属性（JSON API调用）
+        else if (link.hasAttribute('data-proxy-url')) {
+            event.preventDefault();
+            const proxyUrl = link.getAttribute('data-proxy-url');
+            const fullUrl = `${API_BASE_URL}${proxyUrl}`;
+            loadContent(fullUrl);
+        }
+        // 外部链接在新标签页打开
+        else if (href && href.trim() !== '' && !href.startsWith('javascript:')) {
             event.preventDefault();
             window.open(href, '_blank', 'noopener,noreferrer');
         }
