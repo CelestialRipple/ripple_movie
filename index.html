@@ -218,7 +218,7 @@
     const hotSearchesContainer = widget.querySelector('#hot-searches-container');
     const hotSearchesList = widget.querySelector('#hot-searches-list');
 
-    const API_BASE_URL = 'https://mv.hiripple.com';
+    const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
     const IP_STATS_API = `${API_BASE_URL}/admin/ip-stats`;
     const SEARCH_HISTORY_API = `${API_BASE_URL}/admin/search-history?limit=500`;
 
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const keyword = keywordInput.value;
         if (!keyword) return;
-        const searchUrl = `https://mv.hiripple.com/search-and-modify?keyword=${encodeURIComponent(keyword)}`;
+        const searchUrl = `https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor/search-and-modify?keyword=${encodeURIComponent(keyword)}`;
         loadContent(searchUrl, true);
     });
 
