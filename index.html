@@ -317,20 +317,22 @@
             statusIndicator.className = 'status-indicator online';
             statusText.innerText = '服务在线';
             
-            const ipData = ipStatsResult.data;
-            updateScrollingNumber(totalVisitorsEl, ipData.length);
-            updateScrollingNumber(totalRequestsEl, ipData.reduce((sum, item) => sum + item.count, 0));
-            
-            if (ipData.length > 0) {
-                const lastRequestTimestamp = Math.max(...ipData.map(item => new Date(item.last_request).getTime()));
-                const beijingTime = new Date(lastRequestTimestamp).toLocaleString('zh-CN', {
-                    timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
-                    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-                });
-                lastRequestTimeEl.innerText = beijingTime.replace(/\//g, '-');
-            }
-            updateHotSearches(searchHistoryResult.data);
-        } catch (error) {
+             const stats = ipStatsResult.data; // 现在 stats 是一个对象, e.g., {total_visitors: 123, total_requests: 456, last_request_time: '...'}
+        if (stats) {
+          updateScrollingNumber(totalVisitorsEl, stats.total_visitors || 0);
+          updateScrollingNumber(totalRequestsEl, stats.total_requests || 0);
+
+          if (stats.last_request_time) {
+            const beijingTime = new Date(stats.last_request_time).toLocaleString('zh-CN', {
+              timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
+              hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            });
+            lastRequestTimeEl.innerText = beijingTime.replace(/\//g, '-');
+          }
+        }
+
+        updateHotSearches(searchHistoryResult.data);
+    } catch (error) {
             statusIndicator.className = 'status-indicator offline';
             statusText.innerText = '服务离线';
             hotSearchesContainer.style.display = 'none';
