@@ -1,361 +1,556 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="强大的115网盘蓝光原盘ISO电影检索工具（电影DIY原盘）,免费、在线、免登录。轻松查找和获取包含DIY特效字幕的4K蓝光ISO资源和WEB流媒体，附带磁力链接和115转存。">
-    <title>在线115网盘电影「蓝光原盘ISO」检索工具 电影DIY原盘（Ripple Movie V1.1）</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
-     crossorigin="anonymous"></script>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="abb0fc53-870a-44dd-811b-377a0c60a3ab"></script>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fdfdfd;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1, h2, h3 {
-            color: #222;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .post-outdated-info {
-            background-color: #fffbe5;
-            border: 1px solid #ffde86;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid #eee;
-            margin: 40px 0;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="强大的115网盘蓝光原盘ISO电影检索工具（电影DIY原盘）,免费、在线、免登录。轻松查找和获取包含DIY特效字幕的4K蓝光ISO资源和WEB流媒体，附带磁力链接和115转存。">
+    <title>在线115网盘电影「蓝光原盘ISO」检索工具 电影DIY原盘（Ripple Movie V1.1）</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
+     crossorigin="anonymous"></script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="abb0fc53-870a-44dd-811b-377a0c60a3ab"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            color: #222;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .post-outdated-info {
+            background-color: #fffbe5;
+            border: 1px solid #ffde86;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 40px 0;
+        }
 
-        /* 已删除 .monitoring-widget 相关的样式 */
-
-        .result-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ddd; z-index: 1000; max-height: 80vh; overflow-y: auto; width: 80%; max-width: 800px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .close-btn { position: absolute; top: 10px; right: 10px; border: none; background-color: #f44336; color: white; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
-        .close-btn:hover { background-color: #d32f2f; }
-        .module-search-item { display: flex; align-items: flex-start; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9; }
-        .video-cover { flex-shrink: 0; margin-right: 15px; }
-        .module-item-pic img { width: 120px; height: auto; border-radius: 4px; }
-        .video-info { flex-grow: 1; }
-        .video-info-header h3, .video-info-header a { margin: 0; color: #333; text-decoration: none; }
-        .video-info-header h3 { font-size: 1.2em; margin-bottom: 5px; }
-        .video-info-aux { color: #666; font-size: 0.9em; margin-bottom: 10px; }
-        .video-info-main { color: #333; font-size: 0.9em; }
-        .video-info-items { margin-bottom: 5px; }
-        .video-info-itemtitle { font-weight: bold; }
-        .btn-aux { display: inline-block; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
-        .btn-aux:hover { background-color: #0056b3; }
-        .icon-download { margin-right: 5px; }
-        .return-btn { position: absolute; top: 10px; right: 80px; border: none; background-color: #007bff; color: white; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
-        .return-btn:hover { background-color: #0056b3; }
-        #searchForm { text-align: center; margin: 30px auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background: #fafafa; }
-        #keywordInput { width: 100%; max-width: 600px; padding: 12px 15px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); outline: none; box-sizing: border-box; }
-        button[type="submit"] { width: 100%; max-width: 634px; padding: 12px 20px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; outline: none; font-size: 16px; box-sizing: border-box; }
-        button[type="submit"]:hover { background-color: #0056b3; }
-        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); z-index: 999; }
-        .loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite; position: fixed; top: 50%; left: 50%; margin-top: -25px; margin-left: -25px; z-index: 1000; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        #paginationResult { text-align: center; margin-top: 20px; }
-        #paginationResult a, #paginationResult span { margin: 0 5px; padding: 5px 10px; border: 1px solid #ddd; text-decoration: none; color: #007bff; }
-        #paginationResult .page-current { background-color: #007bff; color: white; border-color: #007bff; }
-        @media (max-width: 768px) {
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        .monitoring-widget { font-family: 'Roboto', sans-serif; background-color: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; max-width: 400px; margin: 20px auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); text-align: center; color: #333; }
+        .monitoring-widget .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; font-size: 18px; font-weight: 700; }
+        .status-info { display: flex; align-items: center; }
+        .monitoring-widget .status-indicator { width: 12px; height: 12px; border-radius: 50%; margin-right: 10px; transition: background-color 0.5s ease; }
+        .monitoring-widget .status-indicator.online { background-color: #28a745; box-shadow: 0 0 8px rgba(40, 167, 69, 0.7); }
+        .monitoring-widget .status-indicator.offline { background-color: #dc3545; box-shadow: 0 0 8px rgba(220, 53, 69, 0.7); }
+        .monitoring-widget .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .monitoring-widget .data-item { background-color: #fff; padding: 15px; border-radius: 6px; border: 1px solid #eee; }
+        .monitoring-widget .data-item .label { font-size: 14px; color: #666; margin-bottom: 8px; }
+        .monitoring-widget .value { font-size: 28px; font-weight: 700; color: #0056b3; display: flex; justify-content: center; align-items: center; height: 38px; line-height: 38px; }
+        .digit-container { height: 1em; overflow: hidden; display: inline-block; vertical-align: middle; }
+        .digit-reel { display: flex; flex-direction: column; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        .digit-reel span { height: 1em; display: flex; align-items: center; justify-content: center; }
+        .refresh-button { background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 5px 10px; font-size: 12px; font-weight: normal; cursor: pointer; transition: background-color 0.3s, transform 0.1s; }
+        .refresh-button:hover { background-color: #0056b3; }
+        .refresh-button:active { transform: scale(0.98); }
+        .monitoring-widget .footer { font-size: 12px; color: #888; margin-top: 20px; }
+        .monitoring-widget .footer .time-label { font-weight: bold; }
+        .hot-searches-section { margin-top: 25px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+        .hot-searches-section h3 { font-size: 16px; color: #333; margin-bottom: 15px; }
+        #hot-searches-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        #hot-searches-list li { background-color: #fff; padding: 12px 15px; border-radius: 5px; margin-bottom: 8px; border: 1px solid #eee; cursor: pointer; transition: background-color 0.3s, box-shadow 0.3s; font-size: 14px; display: flex; justify-content: space-between; }
+        #hot-searches-list li:hover { background-color: #f0f8ff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        #hot-searches-list .count { color: #888; font-size: 12px; margin-left: 10px; }
+        .result-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ddd; z-index: 1000; max-height: 80vh; overflow-y: auto; width: 80%; max-width: 800px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .close-btn { position: absolute; top: 10px; right: 10px; border: none; background-color: #f44336; color: white; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+        .close-btn:hover { background-color: #d32f2f; }
+        .module-search-item { display: flex; align-items: flex-start; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9; }
+        .video-cover { flex-shrink: 0; margin-right: 15px; }
+        .module-item-pic img { width: 120px; height: auto; border-radius: 4px; }
+        .video-info { flex-grow: 1; }
+        .video-info-header h3, .video-info-header a { margin: 0; color: #333; text-decoration: none; }
+        .video-info-header h3 { font-size: 1.2em; margin-bottom: 5px; }
+        .video-info-aux { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+        .video-info-main { color: #333; font-size: 0.9em; }
+        .video-info-items { margin-bottom: 5px; }
+        .video-info-itemtitle { font-weight: bold; }
+        .btn-aux { display: inline-block; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
+        .btn-aux:hover { background-color: #0056b3; }
+        .icon-download { margin-right: 5px; }
+        .return-btn { position: absolute; top: 10px; right: 80px; border: none; background-color: #007bff; color: white; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+        .return-btn:hover { background-color: #0056b3; }
+        #searchForm { text-align: center; margin: 30px auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background: #fafafa; }
+        #keywordInput { width: 100%; max-width: 600px; padding: 12px 15px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); outline: none; box-sizing: border-box; }
+        button[type="submit"] { width: 100%; max-width: 634px; padding: 12px 20px; margin-top: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; outline: none; font-size: 16px; box-sizing: border-box; }
+        button[type="submit"]:hover { background-color: #0056b3; }
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.7); z-index: 999; }
+        .loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite; position: fixed; top: 50%; left: 50%; margin-top: -25px; margin-left: -25px; z-index: 1000; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #paginationResult { text-align: center; margin-top: 20px; }
+        #paginationResult a, #paginationResult span { margin: 0 5px; padding: 5px 10px; border: 1px solid #ddd; text-decoration: none; color: #007bff; }
+        #paginationResult .page-current { background-color: #007bff; color: white; border-color: #007bff; }
+        @media (max-width: 768px) {
 }
-    </style>
+    </style>
 </head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
+     crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-7595909020326688"
-     data-ad-slot="7761017397"></ins>
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-7595909020326688"
+     data-ad-slot="7761017397"></ins>
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <body>
 
 <div class="container">
 
-    <header>
-        <h1>Ripple Movie V1.1 (115网盘蓝光原盘ISO检索工具，电影DIY原盘）</h1>
-    </header>
+    <header>
+        <h1>Ripple Movie V1.1 (115网盘蓝光原盘ISO检索工具，电影DIY原盘）</h1>
+    </header>
 
-    <article>
-        <div class="post-outdated-info">
-            ℹ️ 所有资源均来自互联网，如有侵权请联系删除。切勿传播盗版资源，请在力所能及的范围内支持蓝光行业。
-        </div>
+    <article>
+        <div class="post-outdated-info">
+            ℹ️ 所有资源均来自互联网，如有侵权请联系删除。切勿传播盗版资源，请在力所能及的范围内支持蓝光行业。
+        </div>
 
-        <figure style="text-align: center;">
-            <img src="https://772123.xyz/uploads/2023/12/1703825916-截屏2023-12-29-12.58.01.png?x-oss-process=image%2Fquality,q_50%2Fresize,m_fill,w_1024,h_754" alt="工具截图" style="width: 100%; height: auto;">
-        </figure>
+        <figure style="text-align: center;">
+            <img src="https://772123.xyz/uploads/2023/12/1703825916-截屏2023-12-29-12.58.01.png?x-oss-process=image%2Fquality,q_50%2Fresize,m_fill,w_1024,h_754" alt="工具截图" style="width: 100%; height: auto;">
+        </figure>
 
-        <p>Ripple的蓝光电影解析工具，目前修复了绝大部分BUG。</p>
-        <ul>
-            <li>所有电影均包含DIY蓝光原盘/流媒体WEB，主要存储于115云盘，也会附带磁力链；</li>
-            <li>本项目通用API正在开发中，<a href="https://hiripple.com/api" title="API Link">点击移步</a>；</li>
-            <li><a href="https://hiripple.com/" title="API Link">返回博客</a>；</li>
-            <li><a href="https://afdian.tv/a/hiripple" title="API Link">支持我</a>。</li>
-        </ul>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
-     crossorigin="anonymous"></script>
+        <p>Ripple的蓝光电影解析工具，目前修复了绝大部分BUG。</p>
+        <ul>
+            <li>所有电影均包含DIY蓝光原盘/流媒体WEB，主要存储于115云盘，也会附带磁力链；</li>
+            <li>本项目通用API正在开发中，<a href="https://hiripple.com/api" title="API Link">点击移步</a>；</li>
+            <li><a href="https://hiripple.com/" title="API Link">返回博客</a>；</li>
+            <li><a href="https://afdian.tv/a/hiripple" title="API Link">支持我</a>。</li>
+        </ul>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
+     crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-7595909020326688"
-     data-ad-slot="1248429990"></ins>
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-7595909020326688"
+     data-ad-slot="1248429990"></ins>
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-                <div>
-            <form id="searchForm">
-                <input type="text" id="keywordInput" placeholder="输入电影名称/导演">
-                <button type="submit">检索</button>
-            </form>
-            <div id="resultPopup" class="result-popup">
-                <button class="close-btn">关闭</button>
-                <button class="return-btn">返回</button>
-                <div id="searchResult"></div>
-                <div id="paginationResult"></div>
-            </div>
-            <div id="loadingOverlay" class="loading-overlay" style="display: none;"></div>
-            <div id="loadingIndicator" class="loader" style="display: none;"></div>
-        </div>
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
-     crossorigin="anonymous"></script>
+        <div class="monitoring-widget">
+            <div class="header">
+                <div class="status-info">
+                    <div id="status-indicator" class="status-indicator"></div>
+                    <span id="status-text">正在检查...</span>
+                </div>
+                <button id="refresh-button" class="refresh-button">刷新</button>
+            </div>
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="label">请求总人数</div>
+                    <div id="total-visitors" class="value"></div>
+                </div>
+                <div class="data-item">
+                    <div class="label">请求总次数</div>
+                    <div id="total-requests" class="value"></div>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="time-label">最后请求时间 (北京时间):</span>
+                <div id="last-request-time">N/A</div>
+            </div>
+            <div id="hot-searches-container" class="hot-searches-section" style="display: none;">
+                <h3>热门搜索</h3>
+                <ol id="hot-searches-list"></ol>
+            </div>
+        </div>
+
+        <div>
+            <form id="searchForm">
+                <input type="text" id="keywordInput" placeholder="输入电影名称/导演">
+                <button type="submit">检索</button>
+            </form>
+            <div id="resultPopup" class="result-popup">
+                <button class="close-btn">关闭</button>
+                <button class="return-btn">返回</button>
+                <div id="searchResult"></div>
+                <div id="paginationResult"></div>
+            </div>
+            <div id="loadingOverlay" class="loading-overlay" style="display: none;"></div>
+            <div id="loadingIndicator" class="loader" style="display: none;"></div>
+        </div>
+         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7595909020326688"
+     crossorigin="anonymous"></script>
+<!-- 111 -->
 <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7595909020326688"
-     data-ad-slot="3607000020"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
+     style="display:block"
+     data-ad-client="ca-pub-7595909020326688"
+     data-ad-slot="3607000020"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-        
-        <hr>
-        <h2 style="text-align: center; margin-bottom: 25px;">三步轻松上手：如何使用 Ripple Movie</h2>
-    <ol style="padding-left: 20px; line-height: 1.8;">
-        <li><strong>输入关键词</strong>: 在页面上方的搜索框中，输入您想查找的电影中文名、英文名或IMDb编号。关键词越精确，结果越理想。</li>
-        <li><strong>点击检索</strong>: 点击“检索”按钮。我们的系统将实时从数据库中为您匹配最相关的资源，并在弹窗中清晰地展示出来。</li>
-        <li><strong>获取链接</strong>: 在弹出的结果列表中，浏览不同的版本（如原盘、REMUX等）。点击您需要的链接（如“复制115链接”或“下载磁力链”）即可获取资源，开始您的下载之旅。</li>
-    </ol>
+        
+        <hr>
+        <h2 style="text-align: center; margin-bottom: 25px;">三步轻松上手：如何使用 Ripple Movie</h2>
+    <ol style="padding-left: 20px; line-height: 1.8;">
+        <li><strong>输入关键词</strong>: 在页面上方的搜索框中，输入您想查找的电影中文名、英文名或IMDb编号。关键词越精确，结果越理想。</li>
+        <li><strong>点击检索</strong>: 点击“检索”按钮。我们的系统将实时从数据库中为您匹配最相关的资源，并在弹窗中清晰地展示出来。</li>
+        <li><strong>获取链接</strong>: 在弹出的结果列表中，浏览不同的版本（如原盘、REMUX等）。点击您需要的链接（如“复制115链接”或“下载磁力链”）即可获取资源，开始您的下载之旅。</li>
+    </ol>
 
-    <hr style="margin: 40px 0;">
+    <hr style="margin: 40px 0;">
 
-    <h2 style="text-align: center; margin-bottom: 25px;">常见问题解答 (FAQ)</h2>
+    <h2 style="text-align: center; margin-bottom: 25px;">常见问题解答 (FAQ)</h2>
 
-    <h3>什么是蓝光原盘 (Blu-ray ISO)？它和普通的高清电影有什么区别？</h3>
-    <p>蓝光原盘是对蓝光光盘内容的完整、无损复制，通常以 <code>.iso</code> 文件格式存在。它包含了最高质量的视频、无损的次世代高清音轨（如 DTS-HD Master Audio, Dolby TrueHD）以及光盘的完整菜单和所有花絮。相比于网上常见的经过压缩的MKV等格式，原盘提供了最原汁原味的、影院级别的观影体验，是影音发烧友的终极追求。</p>
+    <h3>什么是蓝光原盘 (Blu-ray ISO)？它和普通的高清电影有什么区别？</h3>
+    <p>蓝光原盘是对蓝光光盘内容的完整、无损复制，通常以 <code>.iso</code> 文件格式存在。它包含了最高质量的视频、无损的次世代高清音轨（如 DTS-HD Master Audio, Dolby TrueHD）以及光盘的完整菜单和所有花絮。相比于网上常见的经过压缩的MKV等格式，原盘提供了最原汁原味的、影院级别的观影体验，是影音发烧友的终极追求。</p>
 
-    <h3>为什么主要提供115网盘的资源？</h3>
-    <p>115网盘以其离线下载速度快、在线预览方便、资源存储稳定不易失效等优点，成为国内高清影音爱好者收藏和分享的首选平台。通过115转存，您可以快速地将G甚至几十G的大文件保存到自己的网盘中，随时观看或下载。</p>
-    
-    <h3>搜索结果中的“DIY字幕”是什么意思？</h3>
-    <p>这通常指由爱好者或压制小组在原盘的基础上，为影片添加或修改的特效字幕、多语种字幕等。这些DIY版本往往解决了原盘官方字幕不理想的问题，提供了更好的观影体验，例如为片中关键对话、场景配上更生动的字体和动态效果。</p>
+    <h3>为什么主要提供115网盘的资源？</h3>
+    <p>115网盘以其离线下载速度快、在线预览方便、资源存储稳定不易失效等优点，成为国内高清影音爱好者收藏和分享的首选平台。通过115转存，您可以快速地将G甚至几十G的大文件保存到自己的网盘中，随时观看或下载。</p>
+    
+    <h3>搜索结果中的“DIY字幕”是什么意思？</h3>
+    <p>这通常指由爱好者或压制小组在原盘的基础上，为影片添加或修改的特效字幕、多语种字幕等。这些DIY版本往往解决了原盘官方字幕不理想的问题，提供了更好的观影体验，例如为片中关键对话、场景配上更生动的字体和动态效果。</p>
 
-    <h3>使用这些资源是否合法？</h3>
-    <p>本站所有资源均通过公开网络技术手段收集，仅供个人学习和技术交流使用。我们坚决反对任何形式的盗版传播行为，也不对任何资源的合法性负责。请在下载后24小时内自觉删除，并购买正版蓝光产品以支持您喜爱的电影和蓝光行业的发展。</p>
+    <h3>使用这些资源是否合法？</h3>
+    <p>本站所有资源均通过公开网络技术手段收集，仅供个人学习和技术交流使用。我们坚决反对任何形式的盗版传播行为，也不对任何资源的合法性负责。请在下载后24小时内自觉删除，并购买正版蓝光产品以支持您喜爱的电影和蓝光行业的发展。</p>
 
- <hr>
-        <h3>Logs</h3>
-        <h4>V1.1:</h4>
-        <ul>
-            <li>修复电影详细复制/下载跳转失败BUG；</li>
-            <li>新增热门下载区块；</li>
-            <li>新增手动刷新按钮，防止ajax载入错误。</li>
-        </ul>
-        <h4>V1.0:</h4>
-        <ul>
-            <li>修复无法检索的问题；</li>
-            <li>搜索界面可以显示页数，可自行切换；</li>
-            <li>增加服务状态监控；</li>
-            <li>加快程序的响应速度。</li>
-        </ul>
-        <p>附：115原盘资源合集 <a href="https://objectstorageapi.ap-southeast-1.run.claw.cloud/xekz4o79-111/g4k.xlsx">Excel下载链接</a></p>
-        <p>转载自<a href="https://linux.do/t/topic/509315" title="Source">Linux.do</a> （<strong>该资源合集为截止24年老版留档，本页面的检索系统为实时更新</strong>）</p>
-    </article>
+ <hr>
+        <h3>Logs</h3>
+        <h4>V1.1:</h4>
+        <ul>
+            <li>修复电影详细复制/下载跳转失败BUG；</li>
+            <li>新增热门下载区块；</li>
+            <li>新增手动刷新按钮，防止ajax载入错误。</li>
+        </ul>
+        <h4>V1.0:</h4>
+        <ul>
+            <li>修复无法检索的问题；</li>
+            <li>搜索界面可以显示页数，可自行切换；</li>
+            <li>增加服务状态监控；</li>
+            <li>加快程序的响应速度。</li>
+        </ul>
+        <p>附：115原盘资源合集 <a href="https://objectstorageapi.ap-southeast-1.run.claw.cloud/xekz4o79-111/g4k.xlsx">Excel下载链接</a></p>
+        <p>转载自<a href="https://linux.do/t/topic/509315" title="Source">Linux.do</a> （<strong>该资源合集为截止24年老版留档，本页面的检索系统为实时更新</strong>）</p>
+    </article>
 
-    <hr>
+    <hr>
 
-    <section id="comments">
-        <h2>评论区</h2>
-        <div class="giscus"></div>
-    </section>
+    <section id="comments">
+        <h2>评论区</h2>
+        <div class="giscus"></div>
+    </section>
 
-</div> 
+</div> <script>
+(function() {
+    const widget = document.querySelector('.monitoring-widget');
+    if (!widget) return;
+    if (widget.classList.contains('initialized')) return;
+    widget.classList.add('initialized');
+
+    const statusIndicator = widget.querySelector('#status-indicator');
+    const statusText = widget.querySelector('#status-text');
+    const totalVisitorsEl = widget.querySelector('#total-visitors');
+    const totalRequestsEl = widget.querySelector('#total-requests');
+    const lastRequestTimeEl = widget.querySelector('#last-request-time');
+    const refreshButton = widget.querySelector('#refresh-button');
+    const hotSearchesContainer = widget.querySelector('#hot-searches-container');
+    const hotSearchesList = widget.querySelector('#hot-searches-list');
+
+    // 更新API地址为查询参数格式
+    const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
+    const IP_STATS_API = `${API_BASE_URL}?action=ip-stats`;
+    const SEARCH_HISTORY_API = `${API_BASE_URL}?action=search-history&limit=500`;
+
+    function updateScrollingNumber(container, newNumber) {
+        if (!container) return;
+        const newNumberStr = String(newNumber);
+        const currentDigitCount = container.children.length;
+        if (newNumberStr.length !== currentDigitCount) {
+            container.innerHTML = '';
+            for (let i = 0; i < newNumberStr.length; i++) {
+                const digitContainer = document.createElement('div');
+                digitContainer.className = 'digit-container';
+                const reel = document.createElement('div');
+                reel.className = 'digit-reel';
+                for (let j = 0; j <= 9; j++) {
+                    const digit = document.createElement('span');
+                    digit.textContent = j;
+                    reel.appendChild(digit);
+                }
+                digitContainer.appendChild(reel);
+                container.appendChild(digitContainer);
+            }
+        }
+        requestAnimationFrame(() => {
+            const digitReels = container.querySelectorAll('.digit-reel');
+            if (digitReels.length === 0) return;
+            const digitHeight = digitReels[0].querySelector('span').clientHeight;
+            for (let i = 0; i < newNumberStr.length; i++) {
+                const digitValue = parseInt(newNumberStr[i], 10);
+                const reel = digitReels[i];
+                if(reel) reel.style.transform = `translateY(-${digitValue * digitHeight}px)`;
+            }
+        });
+    }
+
+    function updateHotSearches(searchData) {
+        if (!searchData || searchData.length === 0) {
+            hotSearchesContainer.style.display = 'none';
+            return;
+        }
+        const counts = searchData.reduce((acc, item) => {
+            const keyword = item.keyword.trim();
+            if (keyword) {
+                acc[keyword] = (acc[keyword] || 0) + 1;
+            }
+            return acc;
+        }, {});
+        const sortedSearches = Object.entries(counts)
+            .filter(([, count]) => count >= 3)
+            .sort(([, countA], [, countB]) => countB - countA)
+            .slice(0, 5);
+        hotSearchesList.innerHTML = '';
+        if (sortedSearches.length > 0) {
+            sortedSearches.forEach(([keyword, count]) => {
+                const li = document.createElement('li');
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'name';
+                nameSpan.textContent = keyword;
+                const countSpan = document.createElement('span');
+                countSpan.className = 'count';
+                countSpan.textContent = `(${count}次)`;
+                li.appendChild(nameSpan);
+                li.appendChild(countSpan);
+                li.addEventListener('click', () => {
+                    navigator.clipboard.writeText(keyword).then(() => {
+                        const originalText = nameSpan.textContent;
+                        nameSpan.textContent = '已复制!';
+                        li.style.pointerEvents = 'none';
+                        setTimeout(() => {
+                            nameSpan.textContent = originalText;
+                            li.style.pointerEvents = 'auto';
+                        }, 1500);
+                    }).catch(err => console.error('复制失败:', err));
+                });
+                hotSearchesList.appendChild(li);
+            });
+            hotSearchesContainer.style.display = 'block';
+        } else {
+            hotSearchesContainer.style.display = 'none';
+        }
+    }
+
+    async function fetchData() {
+        statusText.innerText = '正在刷新...';
+        try {
+            const [ipStatsResponse, searchHistoryResponse] = await Promise.all([
+                fetch(IP_STATS_API),
+                fetch(SEARCH_HISTORY_API)
+            ]);
+            if (!ipStatsResponse.ok || !searchHistoryResponse.ok) throw new Error(`API 接口错误!`);
+            
+            const ipStatsResult = await ipStatsResponse.json();
+            const searchHistoryResult = await searchHistoryResponse.json();
+            
+            statusIndicator.className = 'status-indicator online';
+            statusText.innerText = '服务在线';
+            
+             const stats = ipStatsResult.data; // 现在 stats 是一个对象, e.g., {total_visitors: 123, total_requests: 456, last_request_time: '...'}
+        if (stats) {
+          updateScrollingNumber(totalVisitorsEl, stats.total_visitors || 0);
+          updateScrollingNumber(totalRequestsEl, stats.total_requests || 0);
+
+          if (stats.last_request_time) {
+            const beijingTime = new Date(stats.last_request_time).toLocaleString('zh-CN', {
+              timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
+              hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            });
+            lastRequestTimeEl.innerText = beijingTime.replace(/\//g, '-');
+          }
+        }
+
+        updateHotSearches(searchHistoryResult.data);
+    } catch (error) {
+            statusIndicator.className = 'status-indicator offline';
+            statusText.innerText = '服务离线';
+            hotSearchesContainer.style.display = 'none';
+            console.error("获取数据失败:", error);
+        }
+    }
+    
+    if (refreshButton) {
+        refreshButton.addEventListener('click', () => fetchData());
+    }
+    
+    updateScrollingNumber(totalVisitorsEl, 0);
+    updateScrollingNumber(totalRequestsEl, 0);
+    fetchData();
+    setInterval(fetchData, 300000);
+})();
+</script>
 
 <script>
-// 这个脚本是搜索功能的核心，它被保留了下来。
-// 当用户提交搜索时，它会调用 ?keyword=... API，
-// 这将触发你的 Deno 函数中的 handleSearchAndModify，
-// 从而按原计划记录搜索历史。
 document.addEventListener('DOMContentLoaded', () => {
-    const searchForm = document.getElementById('searchForm');
-    const keywordInput = document.getElementById('keywordInput');
-    const resultPopup = document.getElementById('resultPopup');
-    const searchResult = document.getElementById('searchResult');
-    const paginationResult = document.getElementById('paginationResult');
-    const closeBtn = document.querySelector('.close-btn');
-    const returnBtn = document.querySelector('.return-btn');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingIndicator = document.getElementById('loadingIndicator');
+    const searchForm = document.getElementById('searchForm');
+    const keywordInput = document.getElementById('keywordInput');
+    const resultPopup = document.getElementById('resultPopup');
+    const searchResult = document.getElementById('searchResult');
+    const paginationResult = document.getElementById('paginationResult');
+    const closeBtn = document.querySelector('.close-btn');
+    const returnBtn = document.querySelector('.return-btn');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingIndicator = document.getElementById('loadingIndicator');
 
-    let contentHistory = [];
+    let contentHistory = [];
 
-    // 基础URL
-    const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
+    // 基础URL
+    const API_BASE_URL = 'https://cnvskdxccijlakolvxot.supabase.co/functions/v1/quick-processor';
 
-    function showLoadingIndicator() {
-        loadingOverlay.style.display = 'block';
-        loadingIndicator.style.display = 'block';
-    }
+    function showLoadingIndicator() {
+        loadingOverlay.style.display = 'block';
+        loadingIndicator.style.display = 'block';
+    }
 
-    function hideLoadingIndicator() {
-        loadingOverlay.style.display = 'none';
-        loadingIndicator.style.display = 'none';
-    }
+    function hideLoadingIndicator() {
+        loadingOverlay.style.display = 'none';
+        loadingIndicator.style.display = 'none';
+    }
 
-    function loadContent(url, isInitialSearch = false) {
-        showLoadingIndicator();
-        if (isInitialSearch) {
-            contentHistory = [];
-        }
+    function loadContent(url, isInitialSearch = false) {
+        showLoadingIndicator();
+        if (isInitialSearch) {
+            contentHistory = [];
+        }
 
-        fetch(url, { referrerPolicy: "no-referrer" })
-            .then(response => {
-                if (!response.ok) throw new Error(`网络响应不正常: ${response.status} ${response.statusText}`);
-                const contentType = response.headers.get("content-type");
-                return contentType && contentType.includes("application/json") ? response.json() : response.text();
-            })
-            .then(data => {
-                if (!isInitialSearch && (searchResult.innerHTML.trim() !== '' || paginationResult.innerHTML.trim() !== '')) {
-                    contentHistory.push({
-                        results: searchResult.innerHTML,
-                        pagination: paginationResult.innerHTML
-                    });
-                }
-                
-                if (typeof data === 'object' && data !== null) {
-                    searchResult.innerHTML = data.resultsHtml || '';
-                    paginationResult.innerHTML = data.paginationHtml || '';
-                } else {
-                    searchResult.innerHTML = data;
-                    paginationResult.innerHTML = '';
-                }
-                resultPopup.style.display = 'block';
-            })
-            .catch(error => {
-                console.error('加载内容时出错:', error);
-                searchResult.innerHTML = `<p>加载失败，请检查网络或稍后再试。<br>错误详情: ${error.message}</p>`;
-                paginationResult.innerHTML = '';
-            })
-            .finally(() => hideLoadingIndicator());
-    }
+        fetch(url, { referrerPolicy: "no-referrer" })
+            .then(response => {
+                if (!response.ok) throw new Error(`网络响应不正常: ${response.status} ${response.statusText}`);
+                const contentType = response.headers.get("content-type");
+                return contentType && contentType.includes("application/json") ? response.json() : response.text();
+            })
+            .then(data => {
+                if (!isInitialSearch && (searchResult.innerHTML.trim() !== '' || paginationResult.innerHTML.trim() !== '')) {
+                    contentHistory.push({
+                        results: searchResult.innerHTML,
+                        pagination: paginationResult.innerHTML
+                    });
+                }
+                
+                if (typeof data === 'object' && data !== null) {
+                    searchResult.innerHTML = data.resultsHtml || '';
+                    paginationResult.innerHTML = data.paginationHtml || '';
+                } else {
+                    searchResult.innerHTML = data;
+                    paginationResult.innerHTML = '';
+                }
+                resultPopup.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('加载内容时出错:', error);
+                searchResult.innerHTML = `<p>加载失败，请检查网络或稍后再试。<br>错误详情: ${error.message}</p>`;
+                paginationResult.innerHTML = '';
+            })
+            .finally(() => hideLoadingIndicator());
+    }
 
-    function returnToPreviousContent() {
-        if (contentHistory.length > 0) {
-            const previousContent = contentHistory.pop();
-            searchResult.innerHTML = previousContent.results;
-            paginationResult.innerHTML = previousContent.pagination;
-        }
-    }
+    function returnToPreviousContent() {
+        if (contentHistory.length > 0) {
+            const previousContent = contentHistory.pop();
+            searchResult.innerHTML = previousContent.results;
+            paginationResult.innerHTML = previousContent.pagination;
+        }
+    }
 
-    // 搜索表单处理 (这个会触发后端的搜索记录)
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const keyword = keywordInput.value;
-        if (!keyword) return;
-        const searchUrl = `${API_BASE_URL}?keyword=${encodeURIComponent(keyword)}`;
-        loadContent(searchUrl, true);
-    });
+    // 搜索表单处理
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const keyword = keywordInput.value;
+        if (!keyword) return;
+        const searchUrl = `${API_BASE_URL}?keyword=${encodeURIComponent(keyword)}`;
+        loadContent(searchUrl, true);
+    });
 
-    // 处理搜索结果中的链接点击
-    resultPopup.addEventListener('click', function(event) {
-        const link = event.target.closest('a');
-        if (!link) return;
-        
-        const href = link.getAttribute('href');
-        
-        // 检查是否是相对链接（由我们的 Edge Function 生成的）
-        if (href && href.startsWith('?')) {
-            event.preventDefault();
-            // 将相对链接转换为完整的API调用
-            const fullUrl = `${API_BASE_URL}${href}`;
-            loadContent(fullUrl);
-        } 
-        // 检查是否有 data-proxy-url 属性（JSON API调用）
-        else if (link.hasAttribute('data-proxy-url')) {
-            event.preventDefault();
-            const proxyUrl = link.getAttribute('data-proxy-url');
-            const fullUrl = `${API_BASE_URL}${proxyUrl}`;
-            loadContent(fullUrl);
-        }
-        // 外部链接在新标签页打开
-        else if (href && href.trim() !== '' && !href.startsWith('javascript:')) {
-            event.preventDefault();
-            window.open(href, '_blank', 'noopener,noreferrer');
-        }
-    });
-    
-    if (closeBtn) closeBtn.addEventListener('click', () => { resultPopup.style.display = 'none'; });
-    if (returnBtn) returnBtn.addEventListener('click', returnToPreviousContent);
+    // 处理搜索结果中的链接点击
+    resultPopup.addEventListener('click', function(event) {
+        const link = event.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        
+        // 检查是否是相对链接（由我们的 Edge Function 生成的）
+        if (href && href.startsWith('?')) {
+            event.preventDefault();
+            // 将相对链接转换为完整的API调用
+            const fullUrl = `${API_BASE_URL}${href}`;
+            loadContent(fullUrl);
+        } 
+        // 检查是否有 data-proxy-url 属性（JSON API调用）
+        else if (link.hasAttribute('data-proxy-url')) {
+            event.preventDefault();
+            const proxyUrl = link.getAttribute('data-proxy-url');
+            const fullUrl = `${API_BASE_URL}${proxyUrl}`;
+            loadContent(fullUrl);
+        }
+        // 外部链接在新标签页打开
+        else if (href && href.trim() !== '' && !href.startsWith('javascript:')) {
+            event.preventDefault();
+            window.open(href, '_blank', 'noopener,noreferrer');
+        }
+    });
+    
+    if (closeBtn) closeBtn.addEventListener('click', () => { resultPopup.style.display = 'none'; });
+    if (returnBtn) returnBtn.addEventListener('click', returnToPreviousContent);
 
-    const clipboard = new ClipboardJS('.btn-copyurl');
-    clipboard.on('success', function(e) {
-        const span = e.trigger.querySelector('span');
-        if (span) {
-            const originalSpanText = span.textContent;
-            span.textContent = '已复制!';
-            setTimeout(() => { span.textContent = originalSpanText; }, 1500);
-        }
-        e.clearSelection();
-    });
-    clipboard.on('error', () => { alert('复制失败，请手动复制。'); });
+    const clipboard = new ClipboardJS('.btn-copyurl');
+    clipboard.on('success', function(e) {
+        const span = e.trigger.querySelector('span');
+        if (span) {
+            const originalSpanText = span.textContent;
+            span.textContent = '已复制!';
+            setTimeout(() => { span.textContent = originalSpanText; }, 1500);
+        }
+        e.clearSelection();
+    });
+    clipboard.on('error', () => { alert('复制失败，请手动复制。'); });
 });
 </script>
 
 <script src="https://giscus.app/client.js"
-        data-repo="CelestialRipple/ripple_movie"
-        data-repo-id="R_kgDOPRMZPQ"
-        data-category="General"
-        data-category-id="DIC_kwDOPRMZPc4CtTVO"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-  T       data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+        data-repo="CelestialRipple/ripple_movie"
+        data-repo-id="R_kgDOPRMZPQ"
+        data-category="General"
+        data-category-id="DIC_kwDOPRMZPc4CtTVO"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
 </script>
 </body>
 </html>
